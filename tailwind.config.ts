@@ -13,7 +13,16 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        display: ['Cormorant Garamond', 'serif'],
+        body: ['Outfit', 'sans-serif'],
+      },
       colors: {
+        terracotta: "hsl(var(--terracotta))",
+        sand: "hsl(var(--sand))",
+        olive: "hsl(var(--olive))",
+        "warm-brown": "hsl(var(--warm-brown))",
+        cream: "hsl(var(--cream))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
