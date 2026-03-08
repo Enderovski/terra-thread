@@ -9,9 +9,10 @@ interface ProductCardProps {
   price: string;
   tag?: string;
   index: number;
+  onClick?: () => void;
 }
 
-const ProductCard = ({ image, name, price, tag, index }: ProductCardProps) => {
+const ProductCard = ({ image, name, price, tag, index, onClick }: ProductCardProps) => {
   const { addItem } = useCart();
 
   const handleAddToCart = (e: React.MouseEvent) => {
@@ -27,6 +28,7 @@ const ProductCard = ({ image, name, price, tag, index }: ProductCardProps) => {
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="group cursor-pointer"
+      onClick={onClick}
     >
       <div className="relative overflow-hidden aspect-square bg-muted">
         <img
