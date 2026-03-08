@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Menu, X, ShoppingBag } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCart } from "@/contexts/CartContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { totalItems, setIsOpen: setCartOpen } = useCart();
 
   const links = [
     { label: "Koleksiyon", href: "#collection" },
@@ -31,18 +33,25 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
-            <button className="relative group">
+            <button className="relative group" onClick={() => setCartOpen(true)}>
               <ShoppingBag className="w-5 h-5 text-foreground" strokeWidth={1.5} />
-              <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-primary rounded-full text-primary-foreground text-[9px] flex items-center justify-center font-body">
-                0
-              </span>
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-primary rounded-full text-primary-foreground text-[9px] flex items-center justify-center font-body">
+                  {totalItems}
+                </span>
+              )}
             </button>
           </div>
 
           {/* Mobile */}
           <div className="flex md:hidden items-center gap-4">
-            <button className="relative">
+            <button className="relative" onClick={() => setCartOpen(true)}>
               <ShoppingBag className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-primary rounded-full text-primary-foreground text-[9px] flex items-center justify-center font-body">
+                  {totalItems}
+                </span>
+              )}
             </button>
             <button onClick={() => setIsOpen(!isOpen)}>
               {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
